@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example - Source :: w3schools</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-offset-md-3">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <button type="button" onclick="submitForm()" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            var email = $("input[id=email]").val();
+
+            if (!email) {
+                alert("Enter email");
+                return false;
+            }
+
+            $.ajax({
+                url: `/ajax.php?service=UserAjax&method=getUsername`,
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({
+                    email: email,
+                }),
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.log(response);
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
